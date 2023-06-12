@@ -9,6 +9,19 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <ListBox ItemsSource="{Binding CryptoList}" 
+                 SelectedItem="{Binding SelectedCrypto}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Rank}" />
+                        <TextBlock Text="{Binding Path=Symbol}" />
+                        <TextBlock Text="{Binding Path=Price}" />
+                        <TextBlock Text="{Binding Path=Volume}" />
+                        <TextBlock Text="{Binding Path=ChangePercent}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

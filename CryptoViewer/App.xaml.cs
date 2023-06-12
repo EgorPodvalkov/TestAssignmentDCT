@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -44,6 +45,7 @@ namespace CryptoViewer
             var serviceCollection = new ServiceCollection();
 
             serviceCollection.AddSingleton<ICoinCapAPIService, CoinCapAPIService>();
+            serviceCollection.AddSingleton<HttpClient>();
 
             return serviceCollection.BuildServiceProvider();
         }

@@ -2,25 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CryptoViewer.Models
 {
     public class PreviewInfo
     {
-        // rank
         public int Rank { get; set; }
 
-        // symbol
         public string Symbol { get; set; } = "";
 
-        // priceUsd
-        public decimal Price { get; set; }
+        public string Price { get; set; }
 
-        // volumeUsd24Hr
-        public decimal Volume { get; set; }
+        public string Volume { get; set; }
 
-        // changePercent24Hr
-        public decimal ChangePercent { get; set; }
+        public string ChangePercent { get; set; }
     }
 }

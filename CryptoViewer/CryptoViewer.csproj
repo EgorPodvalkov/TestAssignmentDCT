@@ -119,6 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DeserializedModels\AssetsDeserialized.cs" />
+    <Compile Include="DeserializedModels\PreviewInfoDeserialized.cs" />
+    <Compile Include="Extensions\Mapper.cs" />
     <Compile Include="Interfaces\ICoinCapAPIService.cs" />
     <Compile Include="Models\PreviewInfo.cs" />
     <Compile Include="Services\CoinCapAPIService.cs" />
@@ -159,6 +162,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.14</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Json">
+      <Version>7.0.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
