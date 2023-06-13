@@ -30,13 +30,19 @@ namespace CryptoViewer.Extensions
             if (index != -1 && index + 3 < percentage.Length)
                 percentage = percentage.Substring(0, index + 3);
 
+            // Getting Color of Percentage
+            var percentageColor = "LightGreen";
+            if (percentage[0] == '-')
+                percentageColor = "Red";
+
             return new PreviewInfo
             {
                 Rank = int.Parse(deserializedModel.Rank),
                 Symbol = deserializedModel.Symbol,
                 Price = price + " $",
                 Volume = volume + " $",
-                ChangePercent = percentage + " %"
+                ChangePercent = percentage + " %",
+                ChangePercentColor = percentageColor
             };
         }
     }

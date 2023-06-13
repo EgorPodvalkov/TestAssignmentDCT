@@ -24,12 +24,25 @@ namespace CryptoViewer.ViewModels
             get
             {
                 if (_cryptoList.Count == 0)
-                    _cryptoList = new ObservableCollection<PreviewInfo>(_service.GetTopNCryptos(10));
+                    UpdateCryptoList();
 
                 return _cryptoList;
-            }  
+            }
         }
 
         public PreviewInfo SelectedCrypto { get; set; }
+
+        public void UpdateCryptoList(int numberOfCrypto = 10)
+        {
+            var newCryptoList = new ObservableCollection<PreviewInfo>(_service.GetTopNCryptos(numberOfCrypto));
+            
+            _cryptoList.Clear();
+
+            foreach (var crypto in newCryptoList)
+            {
+                _cryptoList.Add(crypto);
+            }
+
+        }
     }
 }

@@ -11,12 +11,13 @@ namespace CryptoViewer.Models
     {
         public int Rank { get; set; }
 
-        public string Symbol { get; set; } = "";
+        public string Symbol { get; set; }
 
         public string Price { get; set; }
 
         public string Volume { get; set; }
 
         public string ChangePercent { get; set; }
+        public string ChangePercentColor { get; set; }
     }
 }

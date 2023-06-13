@@ -9,19 +9,51 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="#515151" Padding="10" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="110" />
+                <ColumnDefinition Width="90" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Rank" FontSize="17" Grid.Column="0" />
+            <TextBlock Text="Symbol" FontSize="17" Grid.Column="1" />
+            <TextBlock Text="Price, $" FontSize="17" Grid.Column="2" />
+            <TextBlock Text="Volume, $" FontSize="17" Grid.Column="3" />
+            <TextBlock Text="Change, %" FontSize="17" Grid.Column="4" />
+        </Grid>
+        
         <ListBox ItemsSource="{Binding CryptoList}" 
-                 SelectedItem="{Binding SelectedCrypto}">
+                 SelectedItem="{Binding SelectedCrypto}"
+                 Grid.Row="2">
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Path=Rank}" />
-                        <TextBlock Text="{Binding Path=Symbol}" />
-                        <TextBlock Text="{Binding Path=Price}" />
-                        <TextBlock Text="{Binding Path=Volume}" />
-                        <TextBlock Text="{Binding Path=ChangePercent}" />
-                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition Width="90" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Path=Rank}" Grid.Column="0" />
+                        <TextBlock Text="{Binding Path=Symbol}" Grid.Column="1" />
+                        <TextBlock Text="{Binding Path=Price}" Grid.Column="2" />
+                        <TextBlock Text="{Binding Path=Volume}" Grid.Column="3" />
+                        <TextBlock Text="{Binding Path=ChangePercent}" Foreground="{Binding Path=ChangePercentColor}" Grid.Column="4" />
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button Content="Reload Data" Click="ReloadData" Grid.Row="3"/>
     </Grid>
 </Page>
