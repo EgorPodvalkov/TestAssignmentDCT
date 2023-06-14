@@ -33,10 +33,19 @@ namespace CryptoViewer.Views
             DataContext = ActivatorUtilities.GetServiceOrCreateInstance(container, typeof(MainViewModel));
         }
 
-        private void ReloadData(object sender, RoutedEventArgs e)
+        private void ToMainPage(object sender, RoutedEventArgs e)
         {
             var viewModel = DataContext as MainViewModel;
             viewModel.UpdateCryptoList();
+        }
+
+        private void ToFullInfoPage(object sender, RoutedEventArgs e)
+        {
+            var search = Search.Text;
+            if(!string.IsNullOrEmpty(search)) 
+            {
+
+            }
         }
     }
 }
