@@ -45,5 +45,39 @@ namespace CryptoViewer.Extensions
                 ChangePercentColor = percentageColor
             };
         }
+
+        public static FullInfoModel ToModel(this FullInfoDeserialized deserializedModel)
+        {
+            return new FullInfoModel
+            {
+                Id = deserializedModel.Id,
+                Rank = deserializedModel.Rank,
+                Symbol = deserializedModel.Symbol,
+                Name = deserializedModel.Name,
+                Supply = deserializedModel.Supply,
+                Cap = deserializedModel.Cap,
+                Volume = deserializedModel.Volume,
+                Price = deserializedModel.Price,
+                ChangePercent = deserializedModel.ChangePercent,
+                Link = deserializedModel.Link,
+            };
+        }
+
+        public static ICollection<Exchange> ToModelList(this ExchangesDeserialized exchangesDeserialized)
+        {
+            var list = new List<Exchange>();
+
+            foreach (var exchangeDeserialized in exchangesDeserialized.Exchanges)
+            {
+                list.Add(new Exchange
+                {
+                    Id = exchangeDeserialized.Name
+                });
+            }
+
+            return list;
+        }
+
+
     }
 }

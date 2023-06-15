@@ -10,5 +10,7 @@ namespace CryptoViewer.Interfaces
     public interface ICoinCapAPIService
     {
         ICollection<PreviewInfo> GetTopNCryptos(int number);
+        FullInfoModel GetFullInfo(string search);
+        ICollection<Exchange> GetExchangeList(string id, int limit = 5);
     }
 }

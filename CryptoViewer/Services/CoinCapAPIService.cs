@@ -49,5 +49,82 @@ namespace CryptoViewer.Services
 
             return result;
         }
+
+        public FullInfoModel GetFullInfo(string search)
+        {
+            // Creating Request of Searching by id
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($@"https://api.coincap.io/v2/assets/{search.ToLower()}")
+            };
+
+            try
+            {
+                // Handling Responce
+                var response = _client.SendAsync(request).Result;
+                response.EnsureSuccessStatusCode();
+                var json = response.Content.ReadAsStringAsync().Result;
+
+                // Deserializing
+                var responceObj = JsonSerializer.Deserialize<AssetsFullInfoDeserialized>(json);
+
+                return responceObj.CryptoList[0].ToModel();
+            }
+            catch 
+            {
+                // Creating Request by Searching by Symbol or Name
+                request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri($@"https://api.coincap.io/v2/assets")
+                };
+
+                // Handling Responce
+                var response = _client.SendAsync(request).Result;
+                response.EnsureSuccessStatusCode();
+                var json = response.Content.ReadAsStringAsync().Result;
+
+                // Deserializing
+                var responceObj = JsonSerializer.Deserialize<AssetsFullInfoDeserialized>(json);
+
+                // Searching
+                try
+                {
+                    var findedObj = responceObj
+                        .CryptoList
+                        .First(x => 
+                        x.Name.ToLower() == search.ToLower() || 
+                        x.Symbol == search.ToUpper());
+
+                    return findedObj.ToModel();
+                }
+                catch 
+                {
+                    return null;
+                }
+            }
+        }
+
+        public ICollection<Exchange> GetExchangeList(string id, int limit = 5)
+        {
+            // Creating Request
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($@"https://api.coincap.io/v2/assets/{id}/markets?limit={limit}")
+            };
+
+            // Handling Responce
+            var response = _client.SendAsync(request).Result;
+            response.EnsureSuccessStatusCode();
+
+            var json = response.Content.ReadAsStringAsync().Result;
+
+            // Deserializing
+            var responceObj = JsonSerializer.Deserialize<ExchangesDeserialized>(json);
+
+            return responceObj.ToModelList();
+        }
     }
 }

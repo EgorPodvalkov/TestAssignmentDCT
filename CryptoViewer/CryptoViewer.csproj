@@ -119,13 +119,24 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DeserializedModels\AssetsFullInfoDeserialized.cs" />
     <Compile Include="DeserializedModels\AssetsDeserialized.cs" />
+    <Compile Include="DeserializedModels\ExchangeDeserialized.cs" />
+    <Compile Include="DeserializedModels\ExchangesDeserialized.cs" />
+    <Compile Include="DeserializedModels\FullInfoDeserialized.cs" />
     <Compile Include="DeserializedModels\PreviewInfoDeserialized.cs" />
     <Compile Include="Extensions\Mapper.cs" />
     <Compile Include="Interfaces\ICoinCapAPIService.cs" />
+    <Compile Include="Models\Candle.cs" />
+    <Compile Include="Models\Exchange.cs" />
+    <Compile Include="Models\FullInfoModel.cs" />
     <Compile Include="Models\PreviewInfo.cs" />
     <Compile Include="Services\CoinCapAPIService.cs" />
+    <Compile Include="ViewModels\FullInfoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\FullInfoPage.xaml.cs">
+      <DependentUpon>FullInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -151,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\FullInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
