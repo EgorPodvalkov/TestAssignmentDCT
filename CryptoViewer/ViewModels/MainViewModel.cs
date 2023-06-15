@@ -11,7 +11,7 @@ namespace CryptoViewer.ViewModels
 {
     public class MainViewModel
     {
-        private ICoinCapAPIService _service;
+        private readonly ICoinCapAPIService _service;
 
         public MainViewModel(ICoinCapAPIService service)
         {

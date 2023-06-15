@@ -2,6 +2,7 @@
 using CryptoViewer.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,12 @@ namespace CryptoViewer.ViewModels
     public class FullInfoViewModel
     {
         private readonly ICoinCapAPIService _coinCapService;
+        private readonly ICoinGeckoAPIService _coinGeckoService;
 
-        public FullInfoViewModel(ICoinCapAPIService coinCapService)
+        public FullInfoViewModel(ICoinCapAPIService coinCapService, ICoinGeckoAPIService coinGeckoService)
         {
             _coinCapService = coinCapService;
+            _coinGeckoService = coinGeckoService;
         }
 
         private string _id;
@@ -54,6 +57,9 @@ namespace CryptoViewer.ViewModels
         private ICollection<Exchange> _exchanges;
         public ICollection<Exchange> Exchanges { get { return _exchanges; } }
 
+        private ObservableCollection<Candle> _candles = new ObservableCollection<Candle>();
+        public ObservableCollection<Candle> Candles { get {  return _candles; } }
+
         public bool UpdateData(string search)
         {
 
@@ -62,7 +68,11 @@ namespace CryptoViewer.ViewModels
 
             // Checking Crypto is Exist 
             if (fullInfo == null)
+            {
+                _candles.Clear();
                 return false;
+
+            }
 
             // Filling fields
             _id = fullInfo.Id;
@@ -82,7 +92,13 @@ namespace CryptoViewer.ViewModels
             AddLinksToExchanges();
 
             // Candles
+            var candles = _coinGeckoService.GetCandles(_id);
 
+            _candles.Clear();
+            foreach (var candle in candles)
+            {
+                _candles.Add(candle);
+            }
 
             return true;
         }

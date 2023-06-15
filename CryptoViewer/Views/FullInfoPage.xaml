@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:CryptoViewer.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -12,10 +12,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition MaxHeight="400" Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Background="#333333" Grid.Row="0">
@@ -39,17 +39,50 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
         </Grid>
-        <Grid x:Name="Info" Grid.Row="2">
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <telerikChart:RadCartesianChart x:Name="candlestickSeries" Grid.Column="1">
+                <telerikChart:RadCartesianChart.VerticalAxis>
+                    <telerikChart:LinearAxis/>
+                </telerikChart:RadCartesianChart.VerticalAxis>
+                <telerikChart:RadCartesianChart.HorizontalAxis>
+                    <telerikChart:CategoricalAxis/>
+                </telerikChart:RadCartesianChart.HorizontalAxis>
+
+                <telerikChart:CandlestickSeries ItemsSource="{Binding Candles}" >
+                    <telerikChart:CandlestickSeries.HighBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="High"/>
+                    </telerikChart:CandlestickSeries.HighBinding>
+                    <telerikChart:CandlestickSeries.LowBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="Low"/>
+                    </telerikChart:CandlestickSeries.LowBinding>
+                    <telerikChart:CandlestickSeries.OpenBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="Open"/>
+                    </telerikChart:CandlestickSeries.OpenBinding>
+                    <telerikChart:CandlestickSeries.CloseBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="Close"/>
+                    </telerikChart:CandlestickSeries.CloseBinding>
+                </telerikChart:CandlestickSeries>
+            </telerikChart:RadCartesianChart>
+        </Grid>
+
+        <Grid x:Name="Info" Grid.Row="3">
             
         </Grid>
-        <Grid x:Name="LinkRow" Grid.Row="3">
+        <Grid x:Name="LinkRow" Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="5"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
         </Grid>
-        <Grid x:Name="Exchanges" Grid.Row="4" Padding="10">
+        <Grid x:Name="Exchanges" Grid.Row="5" Padding="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>

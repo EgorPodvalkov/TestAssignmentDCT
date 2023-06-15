@@ -45,6 +45,7 @@ namespace CryptoViewer
             var serviceCollection = new ServiceCollection();
 
             serviceCollection.AddSingleton<ICoinCapAPIService, CoinCapAPIService>();
+            serviceCollection.AddSingleton<ICoinGeckoAPIService, CoinGeckoAPIService>();
             serviceCollection.AddSingleton<HttpClient>();
 
             return serviceCollection.BuildServiceProvider();

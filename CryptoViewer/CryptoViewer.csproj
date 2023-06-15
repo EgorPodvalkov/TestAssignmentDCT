@@ -127,11 +127,13 @@
     <Compile Include="DeserializedModels\PreviewInfoDeserialized.cs" />
     <Compile Include="Extensions\Mapper.cs" />
     <Compile Include="Interfaces\ICoinCapAPIService.cs" />
+    <Compile Include="Interfaces\ICoinGeckoAPIService.cs" />
     <Compile Include="Models\Candle.cs" />
     <Compile Include="Models\Exchange.cs" />
     <Compile Include="Models\FullInfoModel.cs" />
     <Compile Include="Models\PreviewInfo.cs" />
     <Compile Include="Services\CoinCapAPIService.cs" />
+    <Compile Include="Services\CoinGeckoAPIService.cs" />
     <Compile Include="ViewModels\FullInfoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\FullInfoPage.xaml.cs">
@@ -181,8 +183,15 @@
     <PackageReference Include="System.Text.Json">
       <Version>7.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Telerik.UI.for.UniversalWindowsPlatform">
+      <Version>1.0.2.11</Version>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <SDKReference Include="Microsoft.VCLibs, version=14.0">
+      <Name>Visual C++ 2015-2019 Runtime for Universal Windows Platform Apps</Name>
+    </SDKReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
