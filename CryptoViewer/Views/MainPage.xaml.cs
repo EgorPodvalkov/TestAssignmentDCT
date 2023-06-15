@@ -31,6 +31,8 @@ namespace CryptoViewer.Views
             var container = ((App)App.Current).Container;
 
             DataContext = ActivatorUtilities.GetServiceOrCreateInstance(container, typeof(MainViewModel));
+
+            Search.KeyDown += EnterInSearch;
         }
 
         private void ToMainPage(object sender, RoutedEventArgs e)
@@ -39,12 +41,23 @@ namespace CryptoViewer.Views
             viewModel.UpdateCryptoList();
         }
 
-        private void ToFullInfoPage(object sender, RoutedEventArgs e)
+        private void EnterInSearch(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                ToFullInfoPage();
+            }
+        }
+
+        private void SearchButton(object sender, RoutedEventArgs e)
+            => ToFullInfoPage();
+
+        private void ToFullInfoPage()
         {
             var search = Search.Text;
             if(!string.IsNullOrEmpty(search)) 
             {
-
+                Frame.Navigate(typeof(FullInfoPage), search);
             }
         }
     }

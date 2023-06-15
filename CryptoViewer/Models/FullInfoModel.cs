@@ -8,15 +8,16 @@ namespace CryptoViewer.Models
 {
     public class FullInfoModel
     {
-        public string Id;
-        public string Rank;
-        public string Symbol;
-        public string Name;
-        public string Supply;
-        public string Cap;
-        public string Volume;
-        public string Price;
-        public string ChangePercent;
-        public string Link;
+        public string Id { get; set; }
+        public string Rank { get; set; }
+        public string Symbol { get; set; }
+        public string Name { get; set; }
+        public string Supply { get; set; }
+        public string Cap { get; set; }
+        public string Volume { get; set; }
+        public string Price { get; set; }
+        public string ChangePercent { get; set; }
+        public string PercentColor { get; set; }
+        public string Link { get; set; }
     }
 }

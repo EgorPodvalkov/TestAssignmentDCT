@@ -44,6 +44,9 @@ namespace CryptoViewer.ViewModels
         
         private string _changePercent;
         public string ChangePercent { get { return _changePercent; } }
+
+        private string _percentColor;
+        public string PercentColor { get { return _percentColor; } }
         
         private string _link;
         public string Link { get { return _link; } }
@@ -71,6 +74,7 @@ namespace CryptoViewer.ViewModels
             _volume = fullInfo.Volume;
             _price = fullInfo.Price;
             _changePercent = fullInfo.ChangePercent;
+            _percentColor = fullInfo.PercentColor;
             _link = fullInfo.Link;
 
             // Getting Exchanges

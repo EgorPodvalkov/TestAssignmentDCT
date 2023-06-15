@@ -11,6 +11,6 @@ namespace CryptoViewer.Interfaces
     {
         ICollection<PreviewInfo> GetTopNCryptos(int number);
         FullInfoModel GetFullInfo(string search);
-        ICollection<Exchange> GetExchangeList(string id, int limit = 5);
+        ICollection<Exchange> GetExchangeList(string id, int limit = 10);
     }
 }

@@ -106,13 +106,13 @@ namespace CryptoViewer.Services
             }
         }
 
-        public ICollection<Exchange> GetExchangeList(string id, int limit = 5)
+        public ICollection<Exchange> GetExchangeList(string id, int limit = 10)
         {
             // Creating Request
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($@"https://api.coincap.io/v2/assets/{id}/markets?limit={limit}")
+                RequestUri = new Uri($@"https://api.coincap.io/v2/assets/{id}/markets?limit={limit * 3}")
             };
 
             // Handling Responce
@@ -124,7 +124,7 @@ namespace CryptoViewer.Services
             // Deserializing
             var responceObj = JsonSerializer.Deserialize<ExchangesDeserialized>(json);
 
-            return responceObj.ToModelList();
+            return responceObj.ToModelList(limit);
         }
     }
 }

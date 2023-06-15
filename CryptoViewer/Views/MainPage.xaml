@@ -28,7 +28,7 @@
 
             <Button Content="Top 10 Crypto" Click="ToMainPage" FontSize="23" Background="#333333" Grid.Column="1" />
             <TextBox x:Name="Search" PlaceholderText="Enter name or symbol" Width="250" FontSize="23"  Grid.Column="3"/>
-            <Button Content="🔍" Click="ToFullInfoPage" FontSize="23" Background="#333333" Grid.Column="4" />
+            <Button Content="🔍" Click="SearchButton" FontSize="23" Background="#333333" Grid.Column="4" />
 
         </Grid>
 
@@ -50,7 +50,8 @@
         
         <ListBox ItemsSource="{Binding CryptoList}" 
                  SelectedItem="{Binding SelectedCrypto}"
-                 Grid.Row="2">
+                 Grid.Row="2"
+                 Background="#2b2b2b">
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
